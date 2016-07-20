@@ -23,16 +23,21 @@ module.exports = function(app) {
     });
 
     app.post('/api/links', function(req, res) {
-        var link = new Link();
-        console.log('Creating a new short link for url: ' + req.body.url)
-        link.url = req.body.url;
+        if (req.body.url === undefined) {
+           res.status(400).send('Invalid url');
+        }
+        else {
+            var link = new Link();
+            console.log('Creating a new short link for url: ' + req.body.url)
+            link.url = req.body.url;
 
-        link.save(function(err) {
-            if (err)
-                res.send(err);
+            link.save(function(err) {
+                if (err)
+                    res.send(err);
+                res.json(link);
+            });
+        }
 
-            res.json(link);
-        })
     });
 
     app.get('/api/links/:link_id', function(req, res) {
@@ -42,7 +47,6 @@ module.exports = function(app) {
 
             if (err)
                 res.send(err);
-
             res.json(link);
         });
     });

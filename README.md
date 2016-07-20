@@ -9,6 +9,7 @@ System Requirements: Node, Bower. Required dependencies are installed during the
 1. Clone this repo: `git clone https://github.com/sboichon/shrtnr`
 2. Install node depencies: `npm install`
 3. Install angular dependencies: `bower install`
+4. Run the tests : `npm test`
 5. Run the server: `node server.js`
 
 
